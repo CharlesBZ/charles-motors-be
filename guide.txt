@@ -1,0 +1,4 @@
+//redux-thunk middleware that allows async actions
+//moment date and time package
+
+npm i axios react-router-dom redux react-redux redux-thunk redux-devtools-extension moment react-moment
