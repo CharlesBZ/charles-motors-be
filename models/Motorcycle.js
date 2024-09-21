@@ -1,100 +1,131 @@
 const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
-const MotorcycleSchema = new mongoose.Schema({
+const MotorcycleSchema = new Schema({
   user: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'user'
+    type: Schema.Types.ObjectId,
+    ref: 'user',
   },
   make: {
     type: String,
-    required: true
+    required: true,
   },
   model: {
     type: String,
-    required: true
+    required: true,
   },
   year: {
     type: Number,
-    required: true
+    required: true,
   },
   price: {
     type: Number,
-    required: true
+    required: true,
   },
   type: {
     type: String, // e.g., Cruiser, Sport, Touring, etc.
-    required: true
+    required: true,
   },
   engineCapacity: {
     type: String, // e.g., 600cc, 1000cc
-    required: true
+    required: true,
   },
   mileage: {
-    type: Number // in kilometers or miles
+    type: Number, // in kilometers or miles
   },
   color: {
-    type: String
+    type: String,
   },
   status: {
     type: String, // e.g., Available, Sold, Maintenance
-    required: true
+    required: true,
   },
   maintenanceHistory: [
     {
       serviceType: {
         type: String,
-        required: true
+        required: true,
       },
       date: {
         type: Date,
-        required: true
+        required: true,
       },
       description: {
-        type: String
-      }
-    }
+        type: String,
+      },
+    },
   ],
   insurance: {
     provider: {
-      type: String
+      type: String,
     },
     policyNumber: {
-      type: String
+      type: String,
     },
     validFrom: {
-      type: Date
+      type: Date,
     },
     validTo: {
-      type: Date
-    }
+      type: Date,
+    },
   },
   accessories: {
-    type: [String] // e.g., Saddlebags, Windshield, Custom Exhaust
+    type: [String], // e.g., Saddlebags, Windshield, Custom Exhaust
   },
   social: {
     youtube: {
-      type: String
+      type: String,
     },
     instagram: {
-      type: String
+      type: String,
     },
     reddit: {
-      type: String
+      type: String,
     },
     tiktok: {
-      type: String
+      type: String,
     },
     facebook: {
-      type: String
+      type: String,
     },
     x: {
-      type: String
+      type: String,
     },
   },
-  dateAdded: {
+  loves: [
+    {
+      user: {
+        type: Schema.Types.ObjectId,
+        ref: 'users',
+      },
+    },
+  ],
+  comments: [
+    {
+      user: {
+        type: Schema.Types.ObjectId,
+        ref: 'users',
+      },
+      text: {
+        type: String,
+        required: true,
+      },
+      name: {
+        type: String,
+      },
+      avatar: {
+        type: String,
+      },
+      date: {
+        type: Date,
+        default: Date.now,
+      },
+    },
+  ],
+  date: {
     type: Date,
-    default: Date.now
-  }
+    default: Date.now,
+  },
 });
 
 module.exports = Motorcycle = mongoose.model('motorcycle', MotorcycleSchema);
